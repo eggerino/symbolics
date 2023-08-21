@@ -7,9 +7,11 @@ The goal of this project is to provide utility to symbolicly define mathematical
 
 ## Todos
 
-- Expression modeling
-- Expression evaluating
-- Expression transforming
-    - Derivative
-- Code generation
-    - C
+- [x] Expression modeling
+- [ ] Expression evaluating
+    - [x] primitives
+    - [ ] anonymous funtions
+- [ ] Expression transforming
+    - [ ] Derivative
+- [ ] Code generation
+    - [ ] C
