@@ -15,13 +15,7 @@ impl Expression {
                 second_operand,
                 operator,
             } => match operator {
-                BinaryOperator::Addition => match first_operand.eval(&values) {
-                    Some(a) => match second_operand.eval(&values) {
-                        Some(b) => Some(a + b),
-                        None => None,
-                    },
-                    None => None,
-                },
+                BinaryOperator::Addition => binary_operation(first_operand, second_operand, &values, |a, b| a + b),
                 BinaryOperator::Subtraction => binary_operation(first_operand, second_operand, &values, |a, b| a - b),
                 BinaryOperator::Multiplication => binary_operation(first_operand, second_operand, &values, |a, b| a * b),
                 BinaryOperator::Division => binary_operation(first_operand, second_operand, &values, |a, b| a / b),
