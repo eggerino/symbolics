@@ -1,11 +1,14 @@
 use std::ops;
 
 pub mod eval;
+pub mod derivative;
 
+#[derive(Clone)]
 pub enum UnaryOperator {
     Negation,
 }
 
+#[derive(Clone)]
 pub enum BinaryOperator {
     Addition,
     Subtraction,
@@ -15,9 +18,11 @@ pub enum BinaryOperator {
     Logarithm,
 }
 
+#[derive(Clone)]
 pub enum Expression {
     Symbol(String),
     Constant(f64),
+    EulerNumber,
     UnaryOperation {
         operand: Box<Expression>,
         operator: UnaryOperator,

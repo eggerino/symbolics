@@ -13,5 +13,9 @@ The goal of this project is to provide utility to symbolicly define mathematical
     - [x] anonymous funtions
 - [ ] Expression transforming
     - [ ] Derivative
+        - [x] elementary operations
+        - [x] Sine and cosine
+        - [x] Exp and log
+        - [x] anonymous functions
 - [ ] Code generation
     - [ ] C

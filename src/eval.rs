@@ -10,6 +10,7 @@ impl Expression {
         match self {
             Expression::Symbol(name) => values.get(&name).map(|x| x.clone()),
             Expression::Constant(x) => Some(x),
+            Expression::EulerNumber => Some(2.71828182845904523536),
             Expression::UnaryOperation { operand, operator } => match operator {
                 UnaryOperator::Negation => operand.eval(values, functions).map(|x| -x),
             },
