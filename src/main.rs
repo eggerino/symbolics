@@ -1,5 +1,6 @@
-use symbolics::{Expression, code_gen::c::Options};
 use std::collections::HashMap;
+use symbolics::code_gen::c::Options;
+use symbolics::*;
 
 fn main() {
     // Evaluation
@@ -41,4 +42,9 @@ fn main() {
 
     let torque = Expression::EulerNumber * gravity * mass * length * alpha.sin();
     torque.c_print(&options);
+
+    let three = val!(3.0);
+    let phi = sym!(phi);
+    let stuff = ln!(three * phi);
+    stuff.c_print(&options);
 }

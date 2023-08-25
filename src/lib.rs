@@ -121,3 +121,24 @@ impl Expression {
         }
     }
 }
+
+#[macro_export]
+macro_rules! val {
+    ($value: expr) => {
+        Expression::Constant($value)
+    };
+}
+
+#[macro_export]
+macro_rules! sym {
+    ($name: expr) => {
+        Expression::Symbol(String::from(stringify!($name)))
+    };
+}
+
+#[macro_export]
+macro_rules! ln {
+    ($arg: expr) => {
+        Expression::EulerNumber.log($arg)
+    };
+}
