@@ -166,7 +166,7 @@ where
     let ln_s = EulerNumber.log(*second_operand.clone());
 
     ((ds / (*second_operand)) * ln_f.clone() - ln_s * (df / (*first_operand.clone())))
-    / (ln_f.clone() * ln_f)
+        / (ln_f.clone() * ln_f)
 }
 
 fn derive_function<F>(
@@ -194,7 +194,7 @@ where
     F: Fn(String) -> String,
     F: Clone,
 {
-    Cosine(Box::new(arg.derive(variable, name_mutation)))
+    arg.clone().cos() * arg.derive(variable, name_mutation)
 }
 
 fn derive_cosine<F>(arg: Box<Expression>, variable: &str, name_mutation: F) -> Expression
@@ -202,8 +202,30 @@ where
     F: Fn(String) -> String,
     F: Clone,
 {
-    UnaryOperation {
-        operand: Box::new(Cosine(Box::new(arg.derive(variable, name_mutation)))),
-        operator: Negation,
+    - arg.clone().sin() * arg.derive(variable, name_mutation)
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use std::collections::HashMap;
+
+    #[test]
+    fn mutliplication() {
+        let mut values = HashMap::new();
+        let functions = HashMap::new();
+
+        let a = sym!(a);
+        let b = sym!(b);
+        let prod = a * b;
+        let der = prod.derive("a", |x| x);
+        values.insert(String::from("a"), 1.0);
+        values.insert(String::from("b"), 2.0);
+
+        let result = der.eval(&values, &functions);
+
+        assert!(result.is_some());
+        assert!(result.unwrap() < 2.001);
+        assert!(result.unwrap() > 1.000);
     }
 }

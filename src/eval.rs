@@ -73,3 +73,24 @@ fn eval_function(
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn symbol_constant_multiplication() {
+        let mut values = HashMap::new();
+        let functions = HashMap::new();
+
+        let m = sym!(m);
+        let g = val!(9.81);
+        let f_g = m * g;
+        values.insert(String::from("m"), 10.0);
+        let result = f_g.eval(&values, &functions);
+        
+        assert!(result.is_some());
+        assert!(result.unwrap() > 98.1);
+        assert!(result.unwrap() < 98.101);
+    }
+}

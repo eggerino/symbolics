@@ -41,6 +41,14 @@ pub enum Expression {
     Cosine(Box<Expression>),
 }
 
+impl ops::Neg for Expression {
+    type Output = Expression;
+
+    fn neg(self) -> Self::Output {
+        Expression::UnaryOperation { operand: Box::new(self), operator: UnaryOperator::Negation }
+    }
+}
+
 impl ops::Add for Expression {
     type Output = Expression;
 
@@ -134,6 +142,13 @@ macro_rules! sym {
     ($name: expr) => {
         Expression::Symbol(String::from(stringify!($name)))
     };
+}
+
+#[macro_export]
+macro_rules! func {
+    ($name: expr, $($args:expr), + $(,)?) => {
+        Expression::Function { name: String::from(stringify!($name)), arguments: vec![$($args),+] }
+    }
 }
 
 #[macro_export]

@@ -17,7 +17,6 @@ It is inspired by [sympy](https://github.com/sympy/sympy).
     - [x] Derivative
 - [x] Code generation
     - [x] C
-- [ ] Tests
 
 ## Future features
 

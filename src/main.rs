@@ -1,50 +1,20 @@
-use std::collections::HashMap;
 use symbolics::code_gen::c::Options;
 use symbolics::*;
 
 fn main() {
-    // Evaluation
-    let m = Expression::Symbol(String::from("m"));
-    let g = Expression::Constant(9.81);
+    let time = sym!(t);
+    let radius = sym!(r);
+    let angle = func!(angle, time);
 
-    let f_g = m * g;
+    let x = radius * angle.sin();
+    let dd_x_ddt = x
+        .derive("t", |x| format!("d_{}", x))
+        .derive("t", |x| format!("d_{}", x));
 
-    let mut values = HashMap::new();
-    values.insert(String::from("m"), 10.0);
-
-    let functions = HashMap::new();
-    let result = f_g.eval(&values, &functions);
-    if let Some(x) = result {
-        println!("result = {x}");
-    }
-
-    // derivative
-    let a = Expression::Symbol(String::from("a"));
-    let b = Expression::Symbol(String::from("b"));
-    let prod = a * b;
-    let der = prod.derive("a", |x| x);
-    values.insert(String::from("a"), 1.0);
-    values.insert(String::from("b"), 2.0);
-
-    let der_result = der.eval(&values, &functions);
-    if let Some(x) = der_result {
-        println!("der_result = {x}");
-    }
-
-    // C code printing
     let options = Options {
         anonymous_as_function: true,
     };
-    let alpha = Expression::Symbol(String::from("alpha"));
-    let length = Expression::Symbol(String::from("l"));
-    let gravity = Expression::Symbol(String::from("g"));
-    let mass = Expression::Symbol(String::from("m"));
-
-    let torque = Expression::EulerNumber * gravity * mass * length * alpha.sin();
-    torque.c_print(&options);
-
-    let three = val!(3.0);
-    let phi = sym!(phi);
-    let stuff = ln!(three * phi);
-    stuff.c_print(&options);
+    print!("double result = ");
+    dd_x_ddt.c_print(&options);
+    print!(";\n");
 }
