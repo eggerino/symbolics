@@ -8,9 +8,9 @@ The goal of this project is to provide utility to symbolicly define mathematical
 ## Todos
 
 - [x] Expression modeling
-- [ ] Expression evaluating
+- [x] Expression evaluating
     - [x] primitives
-    - [ ] anonymous funtions
+    - [x] anonymous funtions
 - [ ] Expression transforming
     - [ ] Derivative
 - [ ] Code generation

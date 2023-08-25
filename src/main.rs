@@ -10,7 +10,8 @@ fn main() {
     let mut values = HashMap::new();
     values.insert(String::from("m"), 10.0);
 
-    let result = f_g.eval(&values);
+    let functions = HashMap::new();
+    let result = f_g.eval(&values, &functions);
     if let Some(x) = result {
         println!("result = {x}");
     }
