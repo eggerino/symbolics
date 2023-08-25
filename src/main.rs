@@ -1,7 +1,8 @@
-use symbolics::Expression;
+use symbolics::{Expression, code_gen::c::Options};
 use std::collections::HashMap;
 
 fn main() {
+    // Evaluation
     let m = Expression::Symbol(String::from("m"));
     let g = Expression::Constant(9.81);
 
@@ -16,6 +17,7 @@ fn main() {
         println!("result = {x}");
     }
 
+    // derivative
     let a = Expression::Symbol(String::from("a"));
     let b = Expression::Symbol(String::from("b"));
     let prod = a * b;
@@ -28,4 +30,15 @@ fn main() {
         println!("der_result = {x}");
     }
 
+    // C code printing
+    let options = Options {
+        anonymous_as_function: true,
+    };
+    let alpha = Expression::Symbol(String::from("alpha"));
+    let length = Expression::Symbol(String::from("l"));
+    let gravity = Expression::Symbol(String::from("g"));
+    let mass = Expression::Symbol(String::from("m"));
+
+    let torque = Expression::EulerNumber * gravity * mass * length * alpha.sin();
+    torque.c_print(&options);
 }

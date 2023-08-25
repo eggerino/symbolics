@@ -2,6 +2,7 @@ use std::ops;
 
 pub mod eval;
 pub mod derivative;
+pub mod code_gen;
 
 #[derive(Clone)]
 pub enum UnaryOperator {
