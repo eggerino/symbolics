@@ -11,8 +11,8 @@ The goal of this project is to provide utility to symbolicly define mathematical
 - [x] Expression evaluating
     - [x] primitives
     - [x] anonymous funtions
-- [ ] Expression transforming
-    - [ ] Derivative
+- [x] Expression transforming
+    - [x] Derivative
         - [x] elementary operations
         - [x] Sine and cosine
         - [x] Exp and log
