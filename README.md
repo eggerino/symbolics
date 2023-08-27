@@ -15,6 +15,7 @@ It is inspired by [sympy](https://github.com/sympy/sympy).
     - [x] anonymous funtions
 - [x] Expression transforming
     - [x] Derivative
+    - [x] Generic expression transformation
 - [x] Code generation
     - [x] C
 
